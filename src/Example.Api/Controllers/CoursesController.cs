@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -14,5 +15,8 @@ namespace Example.Api.Controllers
         {
             _logger = logger;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get() => Ok();
     }
 }
