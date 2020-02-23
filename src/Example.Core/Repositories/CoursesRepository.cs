@@ -1,10 +1,11 @@
 ﻿using System;
+using Example.Core.Contracts;
 using Example.Core.Entities;
 using Example.Core.Entities.DbContexts;
 
 namespace Example.Core.Repositories
 {
-    public class CoursesRepository : IDisposable
+    internal sealed class CoursesRepository : ICoursesRepository
     {
         private readonly LibraryContext _context;
 
@@ -42,7 +43,7 @@ namespace Example.Core.Repositories
 
         private bool disposedValue = false;
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
