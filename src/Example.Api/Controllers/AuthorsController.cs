@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Example.Api.Controllers
 {
-    [Route("api")]
+    [Route("api/authors")]
     [ApiController]
     public class AuthorsController : ControllerBase
     {
@@ -17,7 +17,6 @@ namespace Example.Api.Controllers
         }
 
         [HttpGet]
-        [Route("/authors")]
         public async Task<IActionResult> Get([FromQuery] AuthorsRequest request) => Ok();
     }
 }
