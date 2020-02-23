@@ -12,4 +12,9 @@
   <ItemGroup>
     <Compile Remove="Extensions\EmptyClass.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Example.Core\Example.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

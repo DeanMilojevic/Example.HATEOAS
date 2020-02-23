@@ -1,5 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Example.Api.Models;
+using Example.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -10,13 +11,15 @@ namespace Example.Api.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly ILogger<CoursesController> _logger;
+        private readonly ICoursesRepository _repository;
 
-        public CoursesController(ILogger<CoursesController> logger)
+        public CoursesController(ILogger<CoursesController> logger, ICoursesRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get() => Ok();
+        public async Task<IActionResult> Get([FromQuery] CoursesRequest request) => Ok();
     }
 }
