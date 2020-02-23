@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Example.Api.Models
+namespace Example.Core.Models
 {
     public class PagedResponse<T> : List<T>
     {

@@ -10,10 +10,15 @@
     <Folder Include="Entities\DbContexts\" />
     <Folder Include="Extensions\" />
     <Folder Include="Contracts\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\QueryableExtensions.cs" />
   </ItemGroup>
 </Project>
