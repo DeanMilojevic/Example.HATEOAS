@@ -2,7 +2,6 @@
 using Example.Api.Models;
 using Example.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Example.Api.Controllers
 {
