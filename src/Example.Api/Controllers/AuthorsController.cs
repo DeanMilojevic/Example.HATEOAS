@@ -1,4 +1,5 @@
-﻿using Example.Api.Extensions;
+﻿using Example.Api.Constants;
+using Example.Api.Extensions;
 using Example.Api.Models;
 using Example.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace Example.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] AuthorsRequest request)
+        public string Get([FromQuery] AuthorsRequest request)
         {
             var authors = _repository.GetAuthors(request.SearchQuery, request.Page, request.HowMany);
 
