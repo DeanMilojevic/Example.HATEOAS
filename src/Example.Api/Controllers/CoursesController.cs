@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Example.Api.Models;
+﻿using Example.Api.Models;
 using Example.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,6 +19,6 @@ namespace Example.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] CoursesRequest request) => Ok();
+        public IActionResult Get([FromQuery] CoursesRequest request) => Ok();
     }
 }

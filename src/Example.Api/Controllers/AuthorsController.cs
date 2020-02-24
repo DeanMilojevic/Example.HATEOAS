@@ -21,7 +21,7 @@ namespace Example.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] AuthorsRequest request)
+        public IActionResult Get([FromQuery] AuthorsRequest request)
         {
             var authors = _repository.GetAuthors(request.SearchQuery, request.Page, request.HowMany);
 

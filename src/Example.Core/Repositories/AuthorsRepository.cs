@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Example.Core.Contracts;
 using Example.Core.Entities;
@@ -15,6 +16,11 @@ namespace Example.Core.Repositories
         public AuthorsRepository(LibraryContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<Author> GetAuthors()
+        {
+            return _context.Authors.ToList();
         }
 
         public PagedResponse<Author> GetAuthors(string searchQuery, int pageNumber, int pageSize)
