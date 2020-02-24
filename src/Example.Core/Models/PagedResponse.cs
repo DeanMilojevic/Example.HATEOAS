@@ -8,8 +8,8 @@ namespace Example.Core.Models
         public PagedResponse(IEnumerable<T> items, int totalCount, int currentPage, int pageSize)
         {
             TotalCount = totalCount;
-            Page = currentPage;
-            Size = pageSize;
+            CurrentPage = currentPage;
+            PageSize = pageSize;
 
             TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
 
@@ -17,11 +17,11 @@ namespace Example.Core.Models
         }
 
         public int TotalCount { get; }
-        public int Page { get; }
+        public int CurrentPage { get; }
         public int TotalPages { get; }
-        public int Size { get; }
+        public int PageSize { get; }
 
-        public bool HasPrevious => Page > 1;
-        public bool HasNext => Page < TotalPages;
+        public bool HasPrevious => CurrentPage > 1;
+        public bool HasNext => CurrentPage < TotalPages;
     }
 }

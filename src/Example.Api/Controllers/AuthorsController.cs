@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Example.Api.Extensions;
 using Example.Api.Models;
 using Example.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,18 @@ namespace Example.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] AuthorsRequest request) => Ok();
+        public async Task<IActionResult> Get([FromQuery] AuthorsRequest request)
+        {
+            var authors = _repository.GetAuthors(request.SearchQuery, request.Page, request.HowMany);
+
+            Request.Headers
+                .AddPaginationMetadata(
+                    authors.TotalCount,
+                    authors.PageSize,
+                    authors.CurrentPage,
+                    authors.TotalPages);
+
+            return Ok(authors);
+        }
     }
 }

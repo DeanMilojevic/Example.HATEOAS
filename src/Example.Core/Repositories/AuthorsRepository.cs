@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using Example.Core.Contracts;
 using Example.Core.Entities;
 using Example.Core.Entities.DbContexts;
+using Example.Core.Extensions;
+using Example.Core.Models;
 
 namespace Example.Core.Repositories
 {
@@ -12,6 +15,23 @@ namespace Example.Core.Repositories
         public AuthorsRepository(LibraryContext context)
         {
             _context = context;
+        }
+
+        public PagedResponse<Author> GetAuthors(string searchQuery, int pageNumber, int pageSize)
+        {
+            var collection = _context.Authors as IQueryable<Author>;
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                var query = searchQuery.Trim();
+
+                collection = collection
+                    .Where(author =>
+                        author.FirstName.Contains(query) ||
+                        author.LastName.Contains(query));
+            }
+
+            return collection.ToPagedResponse(pageNumber, pageSize);
         }
 
         public void Insert(Author author)

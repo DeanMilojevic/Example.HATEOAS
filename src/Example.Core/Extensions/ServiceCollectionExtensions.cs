@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Example.Core.Contracts;
+using Example.Core.Entities.DbContexts;
+using Example.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Example.Core.Extensions
 {
@@ -6,7 +10,11 @@ namespace Example.Core.Extensions
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
-            // TODO: Add registrations
+            services.AddDbContext<LibraryContext>(builder => builder.UseInMemoryDatabase("library"));
+
+            services.AddTransient<IAuthorsRepository, AuthorsRepository>();
+            services.AddTransient<ICoursesRepository, CoursesRepository>();
+
             return services;
         }
     }
