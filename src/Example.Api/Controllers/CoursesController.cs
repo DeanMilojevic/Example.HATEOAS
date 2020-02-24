@@ -9,12 +9,10 @@ namespace Example.Api.Controllers
     [ApiController]
     public class CoursesController : ControllerBase
     {
-        private readonly ILogger<CoursesController> _logger;
         private readonly ICoursesRepository _repository;
 
-        public CoursesController(ILogger<CoursesController> logger, ICoursesRepository repository)
+        public CoursesController(ICoursesRepository repository)
         {
-            _logger = logger;
             _repository = repository;
         }
 

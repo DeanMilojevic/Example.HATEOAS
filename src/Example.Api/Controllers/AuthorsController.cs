@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Example.Api.Extensions;
+﻿using Example.Api.Extensions;
 using Example.Api.Models;
 using Example.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +10,10 @@ namespace Example.Api.Controllers
     [ApiController]
     public class AuthorsController : ControllerBase
     {
-        private readonly ILogger<AuthorsController> _logger;
         private readonly IAuthorsRepository _repository;
 
-        public AuthorsController(ILogger<AuthorsController> logger, IAuthorsRepository repository)
+        public AuthorsController(IAuthorsRepository repository)
         {
-            _logger = logger;
             _repository = repository;
         }
 
