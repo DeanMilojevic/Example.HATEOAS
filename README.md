@@ -1,8 +1,8 @@
-# HATEOAS
+# HATEOAS (WIP)
 
-Implementing the HATEOAS (Hypermedia as the Engine of Application State) has some flavours throught the world.
+Implementing the HATEOAS (Hypermedia as the Engine of Application State) has some flavours throught the world. When implementing HATEOS in the design of the API, there are some guidelines we need to follow (well, standards to be exact). This is something that keeps growing and chaning over time, but some example of this standards are *OData*, *HAL*, *Siren*, etc.
 
-When implementing HATEOS in the design of the API, there are some guidelines we need to follow. For example, how the links should be returned to the client:
+One of the things that this standards provide as a guideline is formatting of the links/actions/endpoints client will get together with resource:
 
 ```json
 {
@@ -126,6 +126,19 @@ In case of the collection of the resources:
     ]
 }
 ```
+
+Next to this, we also return some information, as part of the header.
+
+```json
+    X-Pagination: {
+        "totalCount":3,
+        "pageSize":10,
+        "currentPage":1,
+        "totalPages":1
+        }
+```
+
+This is metadata about the *pagination* itself. Honestly, it is up to implementer and his choosen way on how to return this information. This can also be part of the "envelope" instead of adding a header. As most of the things in programming, this is a matter of preference/opinion/likes/etc. Here, I went with a header approach, but maybe in some other controller in this example I will showcase this as part of the "envelope".
 
 ## Content negotiation and media types
 
