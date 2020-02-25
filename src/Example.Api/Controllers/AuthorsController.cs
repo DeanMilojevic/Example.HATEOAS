@@ -72,7 +72,13 @@ namespace Example.Api.Controllers
         }
 
         [HttpDelete("{authorId}", Name = "DeleteAuthor")]
-        public IActionResult Delete(Guid authorId) => Ok();
+        public IActionResult Delete(Guid authorId)
+        {
+            _repository.Delete(new Core.Entities.Author { Id = authorId });
+            _repository.Save();
+
+            return Ok();
+        }
 
         private List<Link> CreateLinks(Guid authorId)
         {
