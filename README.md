@@ -143,7 +143,7 @@ This means that if we can multiple representations of the resource, we can defin
 
 ## Resources
 
-[JSON:API](https://jsonapi.org/)
-[OData](https://www.odata.org/)
-[Siren](https://github.com/kevinswiber/siren)
-[HAL](http://stateless.co/hal_specification.html)
+[JSON:API](https://jsonapi.org/)  
+[OData](https://www.odata.org/)  
+[Siren](https://github.com/kevinswiber/siren)  
+[HAL](http://stateless.co/hal_specification.html)  
