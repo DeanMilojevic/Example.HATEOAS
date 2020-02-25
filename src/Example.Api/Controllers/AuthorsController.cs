@@ -25,7 +25,7 @@ namespace Example.Api.Controllers
         {
             var authors = _repository.GetAuthors(request.SearchQuery, request.Page, request.HowMany);
 
-            Request.Headers
+            Response.Headers
                 .AddPaginationMetadata(
                     authors.TotalCount,
                     authors.PageSize,
