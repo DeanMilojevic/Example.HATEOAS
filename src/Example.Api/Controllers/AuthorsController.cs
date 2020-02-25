@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Example.Api.Constants;
 using Example.Api.Extensions;
 using Example.Api.Models;
@@ -31,7 +32,26 @@ namespace Example.Api.Controllers
                     authors.CurrentPage,
                     authors.TotalPages);
 
-            return Ok(authors);
+            var enrichedAuthors = authors.Select(author =>
+            {
+                return new
+                {
+                    firstName = author.FirstName,
+                    lastName = author.LastName,
+                    links = CreateLinks(author.Id)
+                };
+            });
+
+            var response = new
+            {
+                value = enrichedAuthors,
+                links = new List<Link>
+                {
+                    new Link(HttpVerb.Get, "self", Url.Link("GetAuthors", request))
+                }
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("{authorId}", Name = "GetAuthor")]
