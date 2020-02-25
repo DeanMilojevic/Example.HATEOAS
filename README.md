@@ -28,9 +28,7 @@ The following examples will show on how this reflects on our responses/resources
 
 ## Single item resource
 
-In case that we have the single item resource, the guideliness tell us we should return the resource and links that we "allow" to performed further.
-
-The example bellow shows how this looks like:
+In case that we have the single item resource, the guideliness tell us we should return the resource and links that we "allow" to performed further. The example bellow shows how this looks like:
 
 ```json
 {
@@ -59,17 +57,93 @@ The example bellow shows how this looks like:
 
 ## Collection of resources
 
-When we have collection of the resources:
+In case of the collection of the resources:
 
 ```json
 {
-    "value": [..., ...],
-    "links": [..., ...]
+    "value": [
+        {
+            "id": 1,
+            "firstName": "FirstName",
+            "lastName": "LastName",
+            "links": [
+                {
+                    "method": "GET",
+                    "rel": "self",
+                    "href": "http://domain/api/authors/1",
+                },
+                {
+                    "method": "DELETE",
+                    "rel": "delete_author",
+                    "href": "http://domain/api/authors/1",
+                },
+                {
+                    "method": "GET",
+                    "rel": "get_courses",
+                    "href": "http://domain/api/authors/1/courses",
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "firstName": "FirstName",
+            "lastName": "LastName",
+            "links": [
+                {
+                    "method": "GET",
+                    "rel": "self",
+                    "href": "http://domain/api/authors/2",
+                },
+                {
+                    "method": "DELETE",
+                    "rel": "delete_author",
+                    "href": "http://domain/api/authors/2",
+                },
+                {
+                    "method": "GET",
+                    "rel": "get_courses",
+                    "href": "http://domain/api/authors/2/courses",
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "method": "GET",
+            "rel": "previous_page",
+            "href": "http://domain/api/authors?page=1&howMany=10",
+        },
+        {
+            "method": "GET",
+            "rel": "self",
+            "href": "http://domain/api/authors?page=2&howMany=10",
+        },
+        {
+            "method": "GET",
+            "rel": "next_page",
+            "href": "http://domain/api/authors?page=3&howMany=10",
+        }
+    ]
 }
 ```
 
-## Reasoning
+## Content negotiation and media types
+
+When venturing in this waters, one additional things keeps showing. Is this anymore `application/json` or is it something new? The client of our API made a request, but will it know what to do about it? It is not "just" resource data anymore. There is much more information now.
+
+This is where the jorney start and the complexity of our implementation keeps increasing. For better, in my opinion.
+
+Now the data is enriched, so to say. It comes with some contextual information that give more meaning about the API. Popular term is that comes in an "envelope". On the other hand, *HTTP* is an "envelope" already. Not gonna dive into that discussion here.
+
+For now focus of this should be, what do we tell client about the content API is going to return?
+
+We can move that responsability to the client as well. If client wants the `application/json` API can return only resource information. Nothing more. No envelope or extra information.
+
+This means that if we can multiple representations of the resource, we can define multiple media types that API will support. The good practice is to have the *default* media type as well. In todays day and age, the safe bet is `application/json`.
 
 ## Resources
 
 [JSON:API](https://jsonapi.org/)
+[OData](https://www.odata.org/)
+[Siren](https://github.com/kevinswiber/siren)
+[HAL](http://stateless.co/hal_specification.html)
