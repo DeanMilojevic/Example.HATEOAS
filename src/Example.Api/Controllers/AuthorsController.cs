@@ -41,13 +41,34 @@ namespace Example.Api.Controllers
 
             var response = new
             {
-                id = author.Id,
                 firstName = author.FirstName,
                 lastName = author.LastName,
                 links = CreateLinks(authorId)
             };
 
             return Ok(response);
+        }
+
+        [HttpPost(Name = "CreateAuthor")]
+        public IActionResult Post([FromBody] CreateAuthorRequest request)
+        {
+            var author = new Core.Entities.Author
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName
+            };
+            _repository.Insert(author);
+
+            _repository.Save();
+
+            var response = new
+            {
+                firstName = author.FirstName,
+                lastName = author.LastName,
+                links = CreateLinks(author.Id)
+            };
+
+            return CreatedAtRoute("GetAuthor", new { authorId = author.Id }, response);
         }
 
         [HttpDelete("{authorId}", Name = "DeleteAuthor")]

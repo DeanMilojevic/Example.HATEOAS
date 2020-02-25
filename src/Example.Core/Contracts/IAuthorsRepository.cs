@@ -9,8 +9,9 @@ namespace Example.Core.Contracts
     {
         IEnumerable<Author> GetAuthors();
         PagedResponse<Author> GetAuthors(string searchQuery, int pageNumbere, int pageSize);
+        Author GetAuthor(Guid authorId);
         void Insert(Author author);
         void Delete(Author author);
-        Author GetAuthor(Guid authorId);
+        bool Save();
     }
 }
