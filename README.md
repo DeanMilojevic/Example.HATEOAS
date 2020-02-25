@@ -1,9 +1,6 @@
 # HATEOAS
 
-Implementing the HATEOAS (Hypermedia as the Engine of Application State) has some flavours throught the world. In this example I am trying 2 of the different ones:
-
-1. Sending metadata using *Headers* of the response.
-2. Sending metadata as part of the *Content* of the response.
+Implementing the HATEOAS (Hypermedia as the Engine of Application State) has some flavours throught the world.
 
 When implementing HATEOS in the design of the API, there are some guidelines we need to follow. For example, how the links should be returned to the client:
 
@@ -27,6 +24,41 @@ From this, the client of the API should care about the *rel*. This is the "key" 
 
 This is one powerfull way to make self-describing and open to evolve API. It introduces some complexity on the implementation side, while it also alows flexibility on the other.
 
+The following examples will show on how this reflects on our responses/resources that we return to our clients.
+
+## Single item resource
+
+In case that we have the single item resource, the guideliness tell us we should return the resource and links that we "allow" to performed further.
+
+The example bellow shows how this looks like:
+
+```json
+{
+    "id": 1,
+    "firstName": "FirstName",
+    "lastName": "LastName",
+    "links": [
+        {
+            "method": "GET",
+            "rel": "self",
+            "href": "http://domain/api/authors/1",
+        },
+        {
+            "method": "DELETE",
+            "rel": "delete_author",
+            "href": "http://domain/api/authors/1",
+        },
+        {
+            "method": "GET",
+            "rel": "get_courses",
+            "href": "http://domain/api/authors/1/courses",
+        }
+    ]
+}
+```
+
+## Collection of resources
+
 When we have collection of the resources:
 
 ```json
@@ -34,26 +66,6 @@ When we have collection of the resources:
     "value": [..., ...],
     "links": [..., ...]
 }
-```
-
-## Headers approach
-
-In the example of the controller *AuthorsController*, the metadata about pagination is sent as part of the *X-Pagination* response header.
-
-```json
-
-Example
-
-```
-
-## Envelope/Content approach
-
-In the example of the *CouresController*, the metadata is packaged together with the *Content* of the response. Popular term for this is *Envelope*.
-
-```json
-
-Example
-
 ```
 
 ## Reasoning

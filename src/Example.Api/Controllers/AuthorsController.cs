@@ -1,4 +1,6 @@
-﻿using Example.Api.Constants;
+﻿using System;
+using System.Collections.Generic;
+using Example.Api.Constants;
 using Example.Api.Extensions;
 using Example.Api.Models;
 using Example.Core.Contracts;
@@ -17,8 +19,8 @@ namespace Example.Api.Controllers
             _repository = repository;
         }
 
-        [HttpGet]
-        public string Get([FromQuery] AuthorsRequest request)
+        [HttpGet(Name = "GetAuthors")]
+        public IActionResult Get([FromQuery] AuthorsRequest request)
         {
             var authors = _repository.GetAuthors(request.SearchQuery, request.Page, request.HowMany);
 
@@ -30,6 +32,36 @@ namespace Example.Api.Controllers
                     authors.TotalPages);
 
             return Ok(authors);
+        }
+
+        [HttpGet("{authorId}", Name = "GetAuthor")]
+        public IActionResult Get(Guid authorId)
+        {
+            var author = _repository.GetAuthor(authorId);
+
+            var response = new
+            {
+                id = author.Id,
+                firstName = author.FirstName,
+                lastName = author.LastName,
+                links = CreateLinks(authorId)
+            };
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{authorId}", Name = "DeleteAuthor")]
+        public IActionResult Delete(Guid authorId) => Ok();
+
+        private List<Link> CreateLinks(Guid authorId)
+        {
+            var links = new List<Link>
+            {
+                new Link(HttpVerb.Get, "self", Url.Link("GetAuthor", new { authorId })),
+                new Link(HttpVerb.Delete, "delete_author", Url.Link("DeleteAuthor", new { authorId }))
+            };
+
+            return links;
         }
     }
 }

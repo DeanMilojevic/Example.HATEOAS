@@ -11,5 +11,6 @@ namespace Example.Core.Contracts
         PagedResponse<Author> GetAuthors(string searchQuery, int pageNumbere, int pageSize);
         void Insert(Author author);
         void Delete(Author author);
+        Author GetAuthor(Guid authorId);
     }
 }

@@ -18,6 +18,13 @@ namespace Example.Core.Repositories
             _context = context;
         }
 
+        public Author GetAuthor(Guid authorId)
+        {
+            var author = _context.Authors.FirstOrDefault(author => author.Id == authorId);
+
+            return author;
+        }
+
         public IEnumerable<Author> GetAuthors()
         {
             return _context.Authors.ToList();
