@@ -1,5 +1,5 @@
 ﻿using Example.Core.Contracts;
-using Example.Core.Entities.DbContexts;
+using Example.Core.DbContexts;
 using Example.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

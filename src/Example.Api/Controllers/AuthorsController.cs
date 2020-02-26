@@ -42,7 +42,7 @@ namespace Example.Api.Controllers
                                 lastName = author.LastName,
                                 links = CreateLinks(author.Id)
                             };
-                        });,
+                        }),
                 links = new List<Link>
                 {
                     new Link(HttpVerb.Get, "self", Url.Link("GetAuthors", request))

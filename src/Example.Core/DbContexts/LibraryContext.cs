@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Example.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace Example.Core.Entities.DbContexts
+namespace Example.Core.DbContexts
 {
     public class LibraryContext : DbContext
     {

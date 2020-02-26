@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Example.Core.Contracts;
+using Example.Core.DbContexts;
 using Example.Core.Entities;
-using Example.Core.Entities.DbContexts;
 using Example.Core.Extensions;
 using Example.Core.Models;
 

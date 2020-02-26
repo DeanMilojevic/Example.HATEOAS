@@ -1,7 +1,7 @@
 ﻿using System;
 using Example.Core.Contracts;
 using Example.Core.Entities;
-using Example.Core.Entities.DbContexts;
+using Example.Core.DbContexts;
 
 namespace Example.Core.Repositories
 {
