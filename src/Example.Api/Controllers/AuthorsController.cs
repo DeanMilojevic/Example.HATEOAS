@@ -32,19 +32,17 @@ namespace Example.Api.Controllers
                     authors.CurrentPage,
                     authors.TotalPages);
 
-            var enrichedAuthors = authors.Select(author =>
-            {
-                return new
-                {
-                    firstName = author.FirstName,
-                    lastName = author.LastName,
-                    links = CreateLinks(author.Id)
-                };
-            });
-
             var response = new
             {
-                value = enrichedAuthors,
+                value = authors.Select(author =>
+                        {
+                            return new
+                            {
+                                firstName = author.FirstName,
+                                lastName = author.LastName,
+                                links = CreateLinks(author.Id)
+                            };
+                        });,
                 links = new List<Link>
                 {
                     new Link(HttpVerb.Get, "self", Url.Link("GetAuthors", request))
