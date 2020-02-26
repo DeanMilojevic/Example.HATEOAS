@@ -6,17 +6,13 @@ One of the things that this standards provide as a guideline is formatting of th
 
 ```json
 {
-    ...,
     "links": [
-        ...,
         {
             "method": "GET",
             "rel": "get-authors",
-            "href": "http://domain/api/authors",
-        },
-        ...
-    ],
-    ...
+            "href": "http://domain/api/authors"
+        }
+    ]
 }
 ```
 
@@ -39,17 +35,17 @@ In case that we have the single item resource, the guideliness tell us we should
         {
             "method": "GET",
             "rel": "self",
-            "href": "http://domain/api/authors/1",
+            "href": "http://domain/api/authors/1"
         },
         {
             "method": "DELETE",
             "rel": "delete_author",
-            "href": "http://domain/api/authors/1",
+            "href": "http://domain/api/authors/1"
         },
         {
             "method": "GET",
             "rel": "get_courses",
-            "href": "http://domain/api/authors/1/courses",
+            "href": "http://domain/api/authors/1/courses"
         }
     ]
 }
@@ -70,17 +66,17 @@ In case of the collection of the resources:
                 {
                     "method": "GET",
                     "rel": "self",
-                    "href": "http://domain/api/authors/1",
+                    "href": "http://domain/api/authors/1"
                 },
                 {
                     "method": "DELETE",
                     "rel": "delete_author",
-                    "href": "http://domain/api/authors/1",
+                    "href": "http://domain/api/authors/1"
                 },
                 {
                     "method": "GET",
                     "rel": "get_courses",
-                    "href": "http://domain/api/authors/1/courses",
+                    "href": "http://domain/api/authors/1/courses"
                 }
             ]
         },
@@ -92,17 +88,17 @@ In case of the collection of the resources:
                 {
                     "method": "GET",
                     "rel": "self",
-                    "href": "http://domain/api/authors/2",
+                    "href": "http://domain/api/authors/2"
                 },
                 {
                     "method": "DELETE",
                     "rel": "delete_author",
-                    "href": "http://domain/api/authors/2",
+                    "href": "http://domain/api/authors/2"
                 },
                 {
                     "method": "GET",
                     "rel": "get_courses",
-                    "href": "http://domain/api/authors/2/courses",
+                    "href": "http://domain/api/authors/2/courses"
                 }
             ]
         }
@@ -111,17 +107,17 @@ In case of the collection of the resources:
         {
             "method": "GET",
             "rel": "previous_page",
-            "href": "http://domain/api/authors?page=1&howMany=10",
+            "href": "http://domain/api/authors?page=1&howMany=10"
         },
         {
             "method": "GET",
             "rel": "self",
-            "href": "http://domain/api/authors?page=2&howMany=10",
+            "href": "http://domain/api/authors?page=2&howMany=10"
         },
         {
             "method": "GET",
             "rel": "next_page",
-            "href": "http://domain/api/authors?page=3&howMany=10",
+            "href": "http://domain/api/authors?page=3&howMany=10"
         }
     ]
 }
@@ -130,12 +126,7 @@ In case of the collection of the resources:
 Next to this, we also return some information, as part of the header.
 
 ```json
-    X-Pagination: {
-        "totalCount":3,
-        "pageSize":10,
-        "currentPage":1,
-        "totalPages":1
-        }
+    X-Pagination: { "totalCount":3, "pageSize":10, "currentPage":1, "totalPages":1 }
 ```
 
 This is metadata about the *pagination* itself. Honestly, it is up to implementer and his choosen way on how to return this information. This can also be part of the "envelope" instead of adding a header. As most of the things in programming, this is a matter of preference/opinion/likes/etc. Here, I went with a header approach, but maybe in some other controller in this example I will showcase this as part of the "envelope".
