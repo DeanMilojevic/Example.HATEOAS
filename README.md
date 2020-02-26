@@ -142,7 +142,7 @@ This is metadata about the *pagination* itself. Honestly, it is up to implemente
 
 ## Content negotiation and media types
 
-When venturing in this waters, one additional things keeps showing. Is this anymore `application/json` or is it something new? The client of our API made a request, but will it know what to do about it? It is not "just" resource data anymore. There is much more information now.
+When venturing in this waters, one additional things keeps showing up. Is this anymore `application/json` or is it something new? The client of our API made a request, but will it know what to do about it? It is not "just" resource data anymore. There is much more information now.
 
 This is where the jorney start and the complexity of our implementation keeps increasing. For better, in my opinion.
 
@@ -150,7 +150,7 @@ Now the data is enriched, so to say. It comes with some contextual information t
 
 For now focus of this should be, what do we tell client about the content API is going to return?
 
-We can move that responsability to the client as well. If client wants the `application/json` API can return only resource information. Nothing more. No envelope or extra information.
+We can move that responsibility to the client as well. If client wants the `application/json` API can return only resource information. Nothing more. No envelope or extra information.
 
 This means that if we can multiple representations of the resource, we can define multiple media types that API will support. The good practice is to have the *default* media type as well. In todays day and age, the safe bet is `application/json`.
 

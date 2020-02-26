@@ -7,7 +7,7 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Entities\DbContexts\" />
+    <Folder Include="DbContexts\" />
     <Folder Include="Extensions\" />
     <Folder Include="Contracts\" />
     <Folder Include="Extensions\" />
