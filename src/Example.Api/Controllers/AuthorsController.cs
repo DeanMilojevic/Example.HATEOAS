@@ -21,6 +21,8 @@ namespace Example.Api.Controllers
         }
 
         [HttpGet(Name = "GetAuthors")]
+        [Produces(
+            "application/vnd.test.hateoas+json")]
         public IActionResult Get([FromQuery] AuthorsRequest request)
         {
             var authors = _repository.GetAuthors(request.SearchQuery, request.Page, request.HowMany);
@@ -42,7 +44,8 @@ namespace Example.Api.Controllers
                                 lastName = author.LastName,
                                 links = CreateLinks(author.Id)
                             };
-                        }),
+                        })
+                ,
                 links = new List<Link>
                 {
                     new Link(HttpVerb.Get, "self", Url.Link("GetAuthors", request))
@@ -53,6 +56,8 @@ namespace Example.Api.Controllers
         }
 
         [HttpGet("{authorId}", Name = "GetAuthor")]
+        [Produces(
+            "application/vnd.test.hateoas+json")]
         public IActionResult Get(Guid authorId)
         {
             var author = _repository.GetAuthor(authorId);
@@ -68,6 +73,8 @@ namespace Example.Api.Controllers
         }
 
         [HttpPost(Name = "CreateAuthor")]
+        [Produces(
+            "application/vnd.test.hateoas+json")]
         public IActionResult Post([FromBody] CreateAuthorRequest request)
         {
             var author = new Core.Entities.Author

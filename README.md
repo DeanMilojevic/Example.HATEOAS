@@ -1,6 +1,6 @@
 # HATEOAS (WIP)
 
-Implementing the HATEOAS (Hypermedia as the Engine of Application State) has some flavours throught the world. When implementing HATEOS in the design of the API, there are some guidelines we need to follow (well, standards to be exact). This is something that keeps growing and chaning over time, but some example of this standards are *OData*, *HAL*, *Siren*, etc.
+Implementing the HATEOAS (Hypermedia as the Engine of Application State) has some flavours throught the world. When implementing HATEOS in the design of the API, there are some guidelines we need to follow (well, standards to be exact). This is something that keeps growing and chaning over time, but some of the examples of standards are *OData*, *HAL*, *Siren*, etc.
 
 One of the things that this standards provide as a guideline is formatting of the links/actions/endpoints client will get together with resource:
 
