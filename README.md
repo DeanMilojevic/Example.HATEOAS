@@ -132,6 +132,76 @@ Next to this, we also return some information, as part of the header.
 
 This is metadata about the *pagination* itself. Honestly, it is up to implementer and his choosen way on how to return this information. This can also be part of the "envelope" instead of adding a header. As most of the things in programming, this is a matter of preference/opinion/likes/etc. Here, I went with a header approach, but maybe in some other controller in this example I will showcase this as part of the "envelope".
 
+## Resources & data shaping
+
+This allows to clients of the API to specify what piece of the resource data they need. This will reduce overfetching of the data and improve overall design of the API. One way to look at this, is to allow clients to define the "views" on top of the resource (think GraphQL).
+
+Example:
+
+```json
+GET http://localhost:5000/api/authors?fields=firstName,lastName
+
+{
+  "value": [
+    {
+      "FirstName": "FirstName",
+      "LastName": "LastName",
+      "links": [
+        {
+          "method": "GET",
+          "rel": "self",
+          "href": "http://localhost:5000/api/authors/f76f5345-a714-4d92-994d-b4b5a337cba7"
+        },
+        {
+          "method": "DELETE",
+          "rel": "delete_author",
+          "href": "http://localhost:5000/api/authors/f76f5345-a714-4d92-994d-b4b5a337cba7"
+        }
+      ]
+    },
+    {
+      "FirstName": "FirstName",
+      "LastName": "LastName",
+      "links": [
+        {
+          "method": "GET",
+          "rel": "self",
+          "href": "http://localhost:5000/api/authors/fae2bf06-a3af-451b-ad0a-6f34c1378fb2"
+        },
+        {
+          "method": "DELETE",
+          "rel": "delete_author",
+          "href": "http://localhost:5000/api/authors/fae2bf06-a3af-451b-ad0a-6f34c1378fb2"
+        }
+      ]
+    },
+    {
+      "FirstName": "FirstName",
+      "LastName": "LastName",
+      "links": [
+        {
+          "method": "GET",
+          "rel": "self",
+          "href": "http://localhost:5000/api/authors/47782987-5513-4929-994c-55dbb27bf7bc"
+        },
+        {
+          "method": "DELETE",
+          "rel": "delete_author",
+          "href": "http://localhost:5000/api/authors/47782987-5513-4929-994c-55dbb27bf7bc"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "method": "GET",
+      "rel": "self",
+      "href": "http://localhost:5000/api/authors?Page=1&HowMany=10&Fields=firstName,lastName"
+    }
+  ]
+}
+```
+
 ## Content negotiation and media types
 
 When venturing in this waters, one additional things keeps showing. Is this anymore `application/json` or is it something new? The client of our API made a request, but will it know what to do about it? It is not "just" resource data anymore. There is much more information now.
