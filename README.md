@@ -150,12 +150,12 @@ GET http://domain/api/authors?fields=firstName,lastName
         {
           "method": "GET",
           "rel": "self",
-          "href": "http://localhost:5000/api/authors/f76f5345-a714-4d92-994d-b4b5a337cba7"
+          "href": "http://domain/api/authors/f76f5345-a714-4d92-994d-b4b5a337cba7"
         },
         {
           "method": "DELETE",
           "rel": "delete_author",
-          "href": "http://localhost:5000/api/authors/f76f5345-a714-4d92-994d-b4b5a337cba7"
+          "href": "http://domain/api/authors/f76f5345-a714-4d92-994d-b4b5a337cba7"
         }
       ]
     },
@@ -166,12 +166,12 @@ GET http://domain/api/authors?fields=firstName,lastName
         {
           "method": "GET",
           "rel": "self",
-          "href": "http://localhost:5000/api/authors/fae2bf06-a3af-451b-ad0a-6f34c1378fb2"
+          "href": "http://domain/api/authors/fae2bf06-a3af-451b-ad0a-6f34c1378fb2"
         },
         {
           "method": "DELETE",
           "rel": "delete_author",
-          "href": "http://localhost:5000/api/authors/fae2bf06-a3af-451b-ad0a-6f34c1378fb2"
+          "href": "http://domain/api/authors/fae2bf06-a3af-451b-ad0a-6f34c1378fb2"
         }
       ]
     },
@@ -182,12 +182,12 @@ GET http://domain/api/authors?fields=firstName,lastName
         {
           "method": "GET",
           "rel": "self",
-          "href": "http://localhost:5000/api/authors/47782987-5513-4929-994c-55dbb27bf7bc"
+          "href": "http://domain/api/authors/47782987-5513-4929-994c-55dbb27bf7bc"
         },
         {
           "method": "DELETE",
           "rel": "delete_author",
-          "href": "http://localhost:5000/api/authors/47782987-5513-4929-994c-55dbb27bf7bc"
+          "href": "http://domain/api/authors/47782987-5513-4929-994c-55dbb27bf7bc"
         }
       ]
     }
@@ -196,7 +196,7 @@ GET http://domain/api/authors?fields=firstName,lastName
     {
       "method": "GET",
       "rel": "self",
-      "href": "http://localhost:5000/api/authors?Page=1&HowMany=10&Fields=firstName,lastName"
+      "href": "http://domain/api/authors?Page=1&HowMany=10&Fields=firstName,lastName"
     }
   ]
 }
