@@ -34,9 +34,18 @@ namespace Example.Api.Controllers
                     authors.CurrentPage,
                     authors.TotalPages);
 
+            var requestedValues = request.Fields
+                                        .Split(',')
+                                        .Select(field => field.Trim())
+                                        .Where(field => !string.IsNullOrEmpty(field))
+                                        .ToArray();
+
             var mappedAuthors = authors.Select(author => 
             {
-                var mappedAuthor = author.ToResponse() as IDictionary<string, object>;
+                IDictionary<string, object> mappedAuthor = requestedValues.Any() ?
+                    author.ToResponse(requestedValues) :
+                    author.ToResponse();
+
                 mappedAuthor.Add("links", CreateLinks(author.Id));
 
                 return mappedAuthor;
