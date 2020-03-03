@@ -34,18 +34,17 @@ namespace Example.Api.Controllers
                     authors.CurrentPage,
                     authors.TotalPages);
 
+            var mappedAuthors = authors.Select(author => 
+            {
+                var mappedAuthor = author.ToResponse() as IDictionary<string, object>;
+                mappedAuthor.Add("links", CreateLinks(author.Id));
+
+                return mappedAuthor;
+            });
+
             var response = new
             {
-                value = authors.Select(author =>
-                        {
-                            return new
-                            {
-                                firstName = author.FirstName,
-                                lastName = author.LastName,
-                                links = CreateLinks(author.Id)
-                            };
-                        })
-                ,
+                value = mappedAuthors,
                 links = new List<Link>
                 {
                     new Link(HttpVerb.Get, "self", Url.Link("GetAuthors", request))
@@ -61,14 +60,9 @@ namespace Example.Api.Controllers
         public IActionResult Get(Guid authorId)
         {
             var author = _repository.GetAuthor(authorId);
-
-            var response = new
-            {
-                firstName = author.FirstName,
-                lastName = author.LastName,
-                links = CreateLinks(authorId)
-            };
-
+            var response = author.ToResponse() as IDictionary<string, object>;
+            response.Add("links", CreateLinks(author.Id));
+            
             return Ok(response);
         }
 
@@ -86,12 +80,8 @@ namespace Example.Api.Controllers
 
             _repository.Save();
 
-            var response = new
-            {
-                firstName = author.FirstName,
-                lastName = author.LastName,
-                links = CreateLinks(author.Id)
-            };
+            var response = author.ToResponse() as IDictionary<string, object>;
+            response.Add("links", CreateLinks(author.Id));
 
             return CreatedAtRoute("GetAuthor", new { authorId = author.Id }, response);
         }
