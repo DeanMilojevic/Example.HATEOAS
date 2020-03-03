@@ -139,7 +139,7 @@ This allows to clients of the API to specify what piece of the resource data the
 Example:
 
 ```json
-GET http://localhost:5000/api/authors?fields=firstName,lastName
+GET http://domain/api/authors?fields=firstName,lastName
 
 {
   "value": [
