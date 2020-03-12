@@ -138,8 +138,8 @@ This allows to clients of the API to specify what piece of the resource data the
 
 Example:
 
+`GET http://domain/api/authors?fields=firstName,lastName`:
 ```json
-GET http://domain/api/authors?fields=firstName,lastName
 
 {
   "value": [
