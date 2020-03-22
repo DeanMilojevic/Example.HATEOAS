@@ -216,7 +216,7 @@ We can move that responsibility to the client as well. If client wants the `appl
 
 This means that if we can multiple representations of the resource, we can define multiple media types that API will support. The good practice is to have the *default* media type as well. In todays day and age, the safe bet is `application/json`.
 
-The convention that it is usually found on this subject, proposes the following format when defining the custom media type: `application/vnd.test.hateoas+json`. Now som explanation about it:
+The convention that it is usually found on this subject, proposes the following format when defining the custom media type: `application/vnd.test.hateoas+json`. Now some explanation about it:
 
 - `vnd`: it is always there, it is a `vendor` prefix.
 - `test`: This can be anything you want, it is `vendor` identifier.
