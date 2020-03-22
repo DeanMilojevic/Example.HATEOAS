@@ -139,8 +139,8 @@ This allows to clients of the API to specify what piece of the resource data the
 Example:
 
 `GET http://domain/api/authors?fields=firstName,lastName`:
-```json
 
+```json
 {
   "value": [
     {
@@ -215,6 +215,13 @@ For now focus of this should be, what do we tell client about the content API is
 We can move that responsibility to the client as well. If client wants the `application/json` API can return only resource information. Nothing more. No envelope or extra information.
 
 This means that if we can multiple representations of the resource, we can define multiple media types that API will support. The good practice is to have the *default* media type as well. In todays day and age, the safe bet is `application/json`.
+
+The convention that it is usually found on this subject, proposes the following format when defining the custom media type: `application/vnd.test.hateoas+json`. Now som explanation about it:
+
+- `vnd`: it is always there, it is a `vendor` prefix.
+- `test`: This can be anything you want, it is `vendor` identifier.
+- `hateoas`: A media type name.
+- `json`: This part indicates in what format the resource will be serialized, `json` or `xml` are most commonly used.
 
 ## Resources
 

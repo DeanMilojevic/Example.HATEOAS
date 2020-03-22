@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using Example.Api.Constants;
 using Example.Api.Extensions;
 using Example.Api.Models;
@@ -22,7 +23,8 @@ namespace Example.Api.Controllers
 
         [HttpGet(Name = "GetAuthors")]
         [Produces(
-            "application/vnd.test.hateoas+json")]
+            "application/vnd.test.hateoas+json",
+            "application/json")]
         public IActionResult Get([FromQuery] AuthorsRequest request)
         {
             var authors = _repository.GetAuthors(request.SearchQuery, request.Page, request.HowMany);
@@ -65,12 +67,30 @@ namespace Example.Api.Controllers
 
         [HttpGet("{authorId}", Name = "GetAuthor")]
         [Produces(
+            "application/json",
             "application/vnd.test.hateoas+json")]
-        public IActionResult Get(Guid authorId)
+        public IActionResult Get([FromHeader(Name = "Accept")] string mediaType, Guid authorId, string fields = "")
         {
+            if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue parsedMediaType))
+            {
+                return BadRequest();
+            }
+
             var author = _repository.GetAuthor(authorId);
+
+            if (author is null)
+            {
+                return NotFound();
+            }
+
             var response = author.ToResponse() as IDictionary<string, object>;
-            response.Add("links", CreateLinks(author.Id));
+
+            var includeLinks = parsedMediaType.MediaType.Contains("hateoas", StringComparison.InvariantCultureIgnoreCase);
+
+            if (includeLinks)
+            {
+                response.Add("links", CreateLinks(author.Id));
+            }
             
             return Ok(response);
         }
